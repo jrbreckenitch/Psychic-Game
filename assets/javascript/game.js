@@ -1,8 +1,3 @@
-// var guessesLeft = document.getElementById("guessesRemaining");
-
-// var lettersGuessed = document.getElementById("userLetters");
-
-// var wins = document.getElementById("userWins");
 
 var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
@@ -45,12 +40,6 @@ document.onkeyup = function(event) {
             alert("You won!");
             wins++;
             reset(); 
-            // guessesLeft = 9;
-            // lettersGuessed.length = 0;
-            // computerLetter.length = 0;
-            // var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
-            // computerLetter.push(computerChoice);
-            
         }
 
         else if (playerChoice !== computerLetter[0] && guessesLeft > 1) {
@@ -62,13 +51,7 @@ document.onkeyup = function(event) {
             console.log("You lost!");
             alert("You lost!");
             losses++;
-            reset(); 
-            // guessesLeft = 9;
-            // lettersGuessed.length = 0;
-            // computerLetter.length = 0;
-            // var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
-            // computerLetter.push(computerChoice);
-              
+            reset();   
         }
 
     var html = 
@@ -79,9 +62,9 @@ document.onkeyup = function(event) {
         "<p>Guesses Left: " + guessesLeft + "</p>" +
         "<p>Your guesses so far: " + lettersGuessed + "</p>";
 
-    var guessesReset = 
-        "<p>Guesses Left: 9" + "</p>" +
-        "<p>Your guesses so far: " + "</p>";
+    // var guessesReset = 
+    //     "<p>Guesses Left: 9" + "</p>" +
+    //     "<p>Your guesses so far: " + "</p>";
     
     document.querySelector("#scoreboard").innerHTML = html;
     document.querySelector("#updateGuess").innerHTML = guesses;
