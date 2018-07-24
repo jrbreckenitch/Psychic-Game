@@ -14,80 +14,79 @@ var guessesLeft = 9;
 
 var lettersGuessed = [];
 
-var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
+var computerLetter = [];
 
-var html = 
-    "<p>Wins: " + wins + "</p>" +
-    "<p>Losses: " + losses + "</p>";
-
-var guesses =
-    "<p>Guesses Left: " + guessesLeft + "</p>" +
-    "<p>Your guesses so far: " + lettersGuessed + "</p>";
-
-var guessesReset = 
-    "<p>Guesses Left: 9" + "</p>" +
-    "<p>Your guesses so far: " + "</p>";
-
-// function updateScore() {
-//     document.querySelector("#scoreboard").innerHTML = html;
-// }
-
-function updateGuess() {
-    document.querySelector("#updateGuess").innerHTML = guesses;
-}
-
-// function guessesReset() {
-//     document.querySelector("#updateGuess").innerHTML = guessesReset;
-// }
+// var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
 
 var reset = function() {
     guessesLeft = 9;
-    lettersGuessed = [];
-    updateGuess();
+    lettersGuessed.length = 0;
+    computerLetter.length = 0;
+    var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
+    computerLetter.push(computerChoice);
+    console.log(computerChoice);
+    // updateGuess();
 }
 
-console.log(computerChoice);
+window.onload = function() {
+    var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
+    computerLetter.push(computerChoice);
+    console.log(computerLetter[0]);
+}
 
 document.onkeyup = function(event) {
 
     // Determines which key was pressed.
     // lettersGuessed = event.key.toLowerCase();
-    lettersGuessed.textContent = event.key;
+    // lettersGuessed = event.key;
+    var playerChoice = event.key;
+    lettersGuessed.push(playerChoice);
+    console.log(computerLetter[0]);
 
-        if (lettersGuessed.textContent === computerChoice) {
+        if (playerChoice === computerLetter[0]) {
+            console.log("You won!");
             wins++;
-            console.log("You won!")
+            // guessesLeft = 9;
+            // lettersGuessed.length = 0;
+            // computerLetter.length = 0;
+            // var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
+            // computerLetter.push(computerChoice);
+            // console.log(computerChoice);
             reset(); 
         }
 
-        else if (lettersGuessed.textContent != computerChoice && guessesLeft != 0) {
+        else if (playerChoice != computerLetter[0] && guessesLeft != 0) {
             guessesLeft--;
-            lettersGuessed.push(lettersGuessed.textContent);   
         }
 
-        else if (guessesLeft === 0 && lettersGuessed.textContent != computerChoice) {
-            console.log("You lost!")
+        else if (guessesLeft === 0 && playerChoice != computerLetter[0]) {
+            console.log("You lost!");
             losses++;
+            // guessesLeft = 9;
+            // lettersGuessed.length = 0;
+            // computerLetter.length = 0;
+            // var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
+            // computerLetter.push(computerChoice);
+            // console.log(computerChoice);
             reset();   
         }
 
+    
+
+    var html = 
+        "<p>Wins: " + wins + "</p>" +
+        "<p>Losses: " + losses + "</p>";
+
+    var guesses =
+        "<p>Guesses Left: " + guessesLeft + "</p>" +
+        "<p>Your guesses so far: " + lettersGuessed + "</p>";
+
+    var guessesReset = 
+        "<p>Guesses Left: 9" + "</p>" +
+        "<p>Your guesses so far: " + "</p>";
+    
     document.querySelector("#scoreboard").innerHTML = html;
     document.querySelector("#updateGuess").innerHTML = guesses;
-
-    // var html = 
-    //     "<p>Wins: " + wins + "</p>" +
-    //     "<p>Losses: " + losses + "</p>";
-
-    // var guesses =
-    //     "<p>Guesses Left: " + guessesLeft + "</p>" +
-    //     "<p>Your guesses so far: " + lettersGuessed + "</p>";
-
-    // var guessesReset = 
-    //     "<p>Guesses Left: 9" + "</p>" +
-    //     "<p>Your guesses so far: " + "</p>";
-
-    // document.querySelector("#scoreboard").innerHTML = html;
-    // document.querySelector("#updateGuess").innerHTML = guesses;
 
     // function updateScore() {
     //     document.querySelector("#scoreboard").innerHTML = html;
