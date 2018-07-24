@@ -16,6 +16,36 @@ var lettersGuessed = [];
 
 var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
 
+var html = 
+    "<p>Wins: " + wins + "</p>" +
+    "<p>Losses: " + losses + "</p>";
+
+var guesses =
+    "<p>Guesses Left: " + guessesLeft + "</p>" +
+    "<p>Your guesses so far: " + lettersGuessed + "</p>";
+
+var guessesReset = 
+    "<p>Guesses Left: 9" + "</p>" +
+    "<p>Your guesses so far: " + "</p>";
+
+// function updateScore() {
+//     document.querySelector("#scoreboard").innerHTML = html;
+// }
+
+function updateGuess() {
+    document.querySelector("#updateGuess").innerHTML = guesses;
+}
+
+// function guessesReset() {
+//     document.querySelector("#updateGuess").innerHTML = guessesReset;
+// }
+
+var reset = function() {
+    guessesLeft = 9;
+    lettersGuessed = [];
+    updateGuess();
+}
+
 console.log(computerChoice);
 
 document.onkeyup = function(event) {
@@ -27,37 +57,22 @@ document.onkeyup = function(event) {
         if (lettersGuessed.textContent === computerChoice) {
             wins++;
             console.log("You won!")
-            // document.getElementById("updateGuess").reset();
-            // guesses.clear();
-            // updateScore();
-            // guessesReset();
-            ;
-            document.querySelector("#userWins").innerHTML = "<p>Wins: " + wins + "</p>";
-            document.querySelector("#loss").innerHTML = "<p>Losses: " + losses + "</p>";
-            document.querySelector("#guessesRemaining").innerHTML = "<p>Guesses Left: 9" + + guessesLeft + "</p>";
-            document.querySelector("#userLetters").innerHTML = "<p>Your guesses so far: " + lettersGuessed + "</p>";            
-            
+            reset(); 
         }
 
         else if (lettersGuessed.textContent != computerChoice && guessesLeft != 0) {
             guessesLeft--;
-            lettersGuessed.push(lettersGuessed.textContent);
-            // updateGuess();
-            document.querySelector("#guessesRemaining").innerHTML = "<p>Guesses Left: " + 9 + "</p>";
-            document.querySelector("#userLetters").innerHTML = "<p>Your guesses so far: " + "</p>";
+            lettersGuessed.push(lettersGuessed.textContent);   
         }
+
         else if (guessesLeft === 0 && lettersGuessed.textContent != computerChoice) {
             console.log("You lost!")
             losses++;
-            // document.getElementById("updateGuess").reset();
-            // guesses.clear();
-            // updateScore();
-            // guessesReset();
-            document.querySelector("#userWins").innerHTML = "<p>Wins: " + wins + "</p>";
-            document.querySelector("#loss").innerHTML = "<p>Losses: " + losses + "</p>";
-            document.querySelector("#guessesRemaining").innerHTML = "<p>Guesses Left: 9" + + guessesLeft + "</p>";
-            document.querySelector("#userLetters").innerHTML = "<p>Your guesses so far: " + lettersGuessed + "</p>";
+            reset();   
         }
+
+    document.querySelector("#scoreboard").innerHTML = html;
+    document.querySelector("#updateGuess").innerHTML = guesses;
 
     // var html = 
     //     "<p>Wins: " + wins + "</p>" +
