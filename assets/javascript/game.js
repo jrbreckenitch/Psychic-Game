@@ -24,7 +24,7 @@ var reset = function() {
     computerLetter.length = 0;
     var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
     computerLetter.push(computerChoice);
-    console.log(computerChoice);
+    console.log(computerLetter[0]);
     // updateGuess();
 }
 
@@ -37,41 +37,39 @@ window.onload = function() {
 document.onkeyup = function(event) {
 
     // Determines which key was pressed.
-    // lettersGuessed = event.key.toLowerCase();
-    // lettersGuessed = event.key;
     var playerChoice = event.key;
     lettersGuessed.push(playerChoice);
-    console.log(computerLetter[0]);
 
         if (playerChoice === computerLetter[0]) {
             console.log("You won!");
+            alert("You won!");
             wins++;
+            reset(); 
             // guessesLeft = 9;
             // lettersGuessed.length = 0;
             // computerLetter.length = 0;
             // var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
             // computerLetter.push(computerChoice);
-            // console.log(computerChoice);
-            reset(); 
+            
         }
 
-        else if (playerChoice != computerLetter[0] && guessesLeft != 0) {
+        else if (playerChoice !== computerLetter[0] && guessesLeft > 1) {
             guessesLeft--;
         }
 
-        else if (guessesLeft === 0 && playerChoice != computerLetter[0]) {
+        else {
+        // else if (guessesLeft === 0 && playerChoice !== computerLetter[0]) {
             console.log("You lost!");
+            alert("You lost!");
             losses++;
+            reset(); 
             // guessesLeft = 9;
             // lettersGuessed.length = 0;
             // computerLetter.length = 0;
             // var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
             // computerLetter.push(computerChoice);
-            // console.log(computerChoice);
-            reset();   
+              
         }
-
-    
 
     var html = 
         "<p>Wins: " + wins + "</p>" +
